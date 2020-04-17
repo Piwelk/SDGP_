@@ -5,6 +5,7 @@ datasetNeg = pd.DataFrame()
 directoryNeg = os.fsencode('../../../aclImdb/train/neg/')
 
 for fileName in os.listdir(directoryNeg):
+    print(fileName)
     with open('../../../aclImdb/train/neg/'+str(fileName)[2:-1]) as f:
         review = f.read()
     datasetNeg = pd.concat([datasetNeg,pd.DataFrame(data={'filename': [str(fileName)[2:-1]], 'review' : [review], 'id' : [int(str(fileName)[2:-7])]})])

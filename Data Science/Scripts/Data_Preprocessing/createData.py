@@ -5,7 +5,7 @@ reviews = pd.read_csv("../Data/Results/results.csv")
 print(reviews.head())
 
 reviewSummary = pd.read_csv("../Data/Results/movieDetails.csv")
-reviewSummary = reviewSummary[['movieName','summary']]
+#reviewSummary = reviewSummary[['movieName','summary']]
 print(reviewSummary.head())
 
 finalResults = pd.merge(reviews, reviewSummary, on='movieName')
