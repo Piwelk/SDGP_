@@ -16,6 +16,7 @@ from sklearn.metrics import roc_curve, auc, roc_auc_score
 import matplotlib.pyplot as plt
 import pickle5 as pickle 
 import joblib
+import os
 #from wordcloud import WordCloud
 #import matplotlib.pyplot as plt
 
@@ -98,5 +99,14 @@ results = pd.DataFrame(y_pred)
 print(results)
 
 predictions = pd.concat([reviews, results], axis=1)
-predictions = predictions.loc[:,['movieName','0']]
+predictions = predictions[predictions.columns[-2:]]
 print(predictions)
+
+if os.path.exists('../Data/Results/results_test.csv'):
+    os.remove('../Data/Results/results_test.csv')
+    print('File already exists \nDeletingFile...\nWriting file ../Data/Results/results_test.csv')
+    predictions.to_csv(r'../Data/Results/results_test.csv')
+else:
+    predictions.to_csv(r'../Data/Results/results_test.csv')
+    print('Data written to file in ../Data/Results/results_test.csv')
+
