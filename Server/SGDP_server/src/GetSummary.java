@@ -25,6 +25,7 @@ import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.impl.HttpSolrClient;
 import org.apache.solr.client.solrj.impl.XMLResponseParser;
+import org.apache.solr.client.solrj.request.QueryRequest;
 import org.apache.solr.client.solrj.response.FacetField;
 import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrDocument;
@@ -75,7 +76,7 @@ public class GetSummary extends HttpServlet {
 				
 				//connecting to solr instance
 				System.out.println("\nConnecting to solr");
-				String urlString = "http://35.245.48.179/solr/mreviewcore";
+				String urlString = "http://35.243.129.129/solr/mreviewcore";
 				HttpSolrClient solr = new HttpSolrClient.Builder(urlString).build();
 				solr.setParser(new XMLResponseParser());
 				System.out.println("Done connecting");
@@ -97,7 +98,10 @@ public class GetSummary extends HttpServlet {
 				
 				String is_positive = "images/negative-vote.png";
 				try {
-					res = solr.query(query);
+					QueryRequest qr = new QueryRequest(query);
+					qr.setBasicAuthCredentials("user","jvse5XDwajVK");
+					res = qr.process(solr);
+					//res = solr.query(query);
 					float qtime = (float) (res.getElapsedTime()/1000.0);
 					SolrDocumentList docList = res.getResults();
 					FacetField hotelField = (FacetField) res.getFacetField("movieName");

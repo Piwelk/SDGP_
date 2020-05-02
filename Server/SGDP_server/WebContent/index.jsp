@@ -43,6 +43,7 @@
 	<%@ page import="org.apache.solr.client.solrj.impl.HttpSolrClient"%>
 	<%@ page import="org.apache.solr.client.solrj.impl.XMLResponseParser"%>
 	<%@ page import="org.apache.solr.client.solrj.response.QueryResponse"%>
+	<%@ page import="org.apache.solr.client.solrj.request.QueryRequest"%>
 	<%@ page import="org.apache.solr.common.SolrDocument"%>
 	<%@ page import="org.apache.solr.common.SolrDocumentList"%>
 	<%@ page import="org.apache.solr.client.solrj.response.FacetField"%>
@@ -63,9 +64,10 @@
       ">
       
       <%
-      String urlString = "http://35.245.48.179/solr/mreviewcore";
+      String urlString = "http://35.243.129.129/solr/mreviewcore";
 		HttpSolrClient solr = new HttpSolrClient.Builder(urlString).build();
 		solr.setParser(new XMLResponseParser());
+		
 		
 		SolrQuery query = new SolrQuery();
 		FacetField hotelField= null;
@@ -76,7 +78,9 @@
 		query.setRows(500);
 		QueryResponse res;
 		try {
-			res = solr.query(query);
+			QueryRequest qr = new QueryRequest(query);
+			qr.setBasicAuthCredentials("user","jvse5XDwajVK");
+			res = qr.process(solr);
 			hotelField = (FacetField) res.getFacetField("name_str");
 		} catch (SolrServerException e) {
 			e.printStackTrace();
