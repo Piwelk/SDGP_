@@ -51,7 +51,7 @@ float qtime = (float) request.getAttribute("qtime");
 int is_bad = (int) request.getAttribute("is_bad");
 int is_good = (int) request.getAttribute("is_good");
 int rows = (int) request.getAttribute("rows");
-String hotel = (String) request.getAttribute("hotel");
+String movie = (String) request.getAttribute("movie");
 String is_positive = (String) request.getAttribute("is_positive");
 String squery = (String) request.getAttribute("squery");
 String mImage = (String) request.getAttribute("mImage");
@@ -190,7 +190,7 @@ function drawChart() {
 								<div class="blog_post_image"><img src=<%=is_positive %> alt=""></div>
 								<div class="blog_post_body">
 									<div class="blog_post_title">
-										<a href="#"><%=hotel%></a>
+										<a href="#"><%=movie%></a>
 										<p style="margin-bottom: 0;white-space:nowrap;overflow:hidden;"><b><%=mGenre %></b></p>
 										<p style="margin-bottom: 0;">Year : <b><%=mYear %></b>&nbsp;&nbsp;Rating : <b><%=mRating %></b> </p>
 									</div>
@@ -223,7 +223,7 @@ function drawChart() {
 											<img src=<%=mImage %> alt="Movie banner">
 										</div>
 									</div>
-									<div class="blog_post_title" style="text-align:center;margin-bottom:6px"><a href="#"><%=hotel%></a></div>
+									<div class="blog_post_title" style="text-align:center;margin-bottom:6px"><a href="#"><%=movie%></a></div>
 								</div>
 							</div>		
 							

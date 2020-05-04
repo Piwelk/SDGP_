@@ -64,15 +64,14 @@ public class GetSummary extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 		
-		String squery = request.getParameter("hotel").substring(0, request.getParameter("hotel").lastIndexOf('(')-1);
-		//String hotel = request.getParameter("hotel").substring(0, request.getParameter("hotel").lastIndexOf('(')-1);
+		String squery = request.getParameter("movie").substring(0, request.getParameter("movie").lastIndexOf('(')-1);
+		//String movie = request.getParameter("movie").substring(0, request.getParameter("movie").lastIndexOf('(')-1);
 		
 				//String squery = "Futz";
-				String hotel = "tt0064354";
-				//String hotel = "K K Hotel George";
+				String movie = "tt0064354";
 				System.out.println("Receiving parameters...");
 				System.out.println("Query: "+squery);
-				System.out.println("hotel: "+hotel);
+				System.out.println("movie: "+movie);
 				
 				//connecting to solr instance
 				System.out.println("\nConnecting to solr");
@@ -104,7 +103,7 @@ public class GetSummary extends HttpServlet {
 					//res = solr.query(query);
 					float qtime = (float) (res.getElapsedTime()/1000.0);
 					SolrDocumentList docList = res.getResults();
-					FacetField hotelField = (FacetField) res.getFacetField("movieName");
+					FacetField movieField = (FacetField) res.getFacetField("movieName");
 					
 					for (int i = 0; i < docList.size(); ++i) {
 						SolrDocument doc = docList.get(i);
@@ -136,14 +135,14 @@ public class GetSummary extends HttpServlet {
 					System.out.println("is_bad : "+is_bad);
 					System.out.println("is_good : "+is_good);
 					System.out.println("rows : "+rows);
-					System.out.println("hotel: "+hotel);
+					System.out.println("movie: "+movie);
 					System.out.println("mName: "+mName);
 					System.out.println("mYear: "+mYear);
 					System.out.println("mRating: "+mRating);
 					System.out.println("mGenre: "+mGenre);
 					System.out.println("mImage: "+mImage);
 					System.out.println("mSummary: "+mSummary);
-					System.out.println("hotelField : "+hotelField.getValues());	
+					System.out.println("movieField : "+movieField.getValues());	
 					
 					if(is_good>is_bad)
 						is_positive = "images/positive-vote.png";
@@ -156,7 +155,7 @@ public class GetSummary extends HttpServlet {
 					request.setAttribute("is_bad", is_bad);
 					request.setAttribute("is_good", is_good);
 					request.setAttribute("rows", rows);
-					request.setAttribute("hotel", squery);
+					request.setAttribute("movie", squery);
 					request.setAttribute("is_positive", is_positive);
 					request.setAttribute("mYear", mYear);
 					request.setAttribute("mRating", mRating);

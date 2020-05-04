@@ -70,7 +70,7 @@
 		
 		
 		SolrQuery query = new SolrQuery();
-		FacetField hotelField= null;
+		FacetField movieField= null;
 		query.set("q", "*");
 		query.set("df", "name");
 		query.setFacet(true);
@@ -81,7 +81,7 @@
 			QueryRequest qr = new QueryRequest(query);
 			qr.setBasicAuthCredentials("user","jvse5XDwajVK");
 			res = qr.process(solr);
-			hotelField = (FacetField) res.getFacetField("name_str");
+			movieField = (FacetField) res.getFacetField("name_str");
 		} catch (SolrServerException e) {
 			e.printStackTrace();
 		}
@@ -95,9 +95,9 @@
 			<form style="width:100%" method="post" action="GetSummary">
               <div class="input-group mb-3" style="margin-bottom:2%">
                 
-                <select name="hotel" class="form-control" style="height:45px;font-size:19px" placeholder="Select a Hotel" aria-label="Recipient's username" aria-describedby="basic-addon2" required>
-                	<%for(int j=0;j<hotelField.getValueCount();j++){ %>
-                		<option value='<%=hotelField.getValues().get(j) %>'><%=hotelField.getValues().get(j) %></option>
+                <select name="movie" class="form-control" style="height:45px;font-size:19px" placeholder="Select a Movie" aria-label="" aria-describedby="basic-addon2" required>
+                	<%for(int j=0;j<movieField.getValueCount();j++){ %>
+                		<option value='<%=movieField.getValues().get(j) %>'><%=movieField.getValues().get(j) %></option>
 					<%} %>
                 </select>
                 <div class="input-group-append">
